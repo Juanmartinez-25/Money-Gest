@@ -1,5 +1,6 @@
 package com.moneygest.Controller;
 
+import com.moneygest.Model.Rol;
 import com.moneygest.Model.Usuario;
 import com.moneygest.Service.UsuarioService;
 import com.moneygest.Repository.RolRepository;
@@ -32,10 +33,15 @@ public class AdminController {
                                 RedirectAttributes ra) {
         Usuario u = usuarioRepository.findById(id).orElse(null);
         if (u != null) {
-            u.setRol(rolRepository.findByNombre(nuevoRol));
+            // Buscamos el rol por nombre y le asignamos solo el ID al usuario
+            Rol rol = rolRepository.findByNombre(nuevoRol);
+            if (rol != null) {
+                u.setIdRol(rol.getId());
+            }
+
             if (nuevaPassword != null && !nuevaPassword.isEmpty()) {
                 u.setContrasena(nuevaPassword);
-                u.setSolicitudCambioClave(false); // Quita la alerta amarilla
+                // Se eliminó la alerta amarilla porque la BD no tiene esa columna
             }
             usuarioRepository.save(u);
             ra.addFlashAttribute("mensaje", "Usuario actualizado correctamente.");
@@ -53,8 +59,17 @@ public class AdminController {
         }
         try {
             Usuario n = new Usuario();
-            n.setNombre(nombre); n.setCorreo(correo); n.setContrasena(contrasena);
-            n.setRol(rolRepository.findByNombre("ROLE_USER"));
+            n.setNombre(nombre);
+            n.setCorreo(correo);
+            n.setContrasena(contrasena);
+            n.setActivo(true); // Es buena práctica activarlo al crearlo
+
+            // Asignamos el ID del rol por defecto
+            Rol rolDefault = rolRepository.findByNombre("ROLE_USER");
+            if (rolDefault != null) {
+                n.setIdRol(rolDefault.getId());
+            }
+
             usuarioRepository.save(n);
             ra.addFlashAttribute("mensaje", "Usuario registrado con éxito.");
         } catch(Exception e) {

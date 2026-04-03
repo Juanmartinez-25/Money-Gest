@@ -1,6 +1,8 @@
 package com.moneygest.Service;
 
+import com.moneygest.Model.Rol;
 import com.moneygest.Model.Usuario;
+import com.moneygest.Repository.RolRepository;
 import com.moneygest.Repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,27 +14,37 @@ import org.springframework.stereotype.Service;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UsuarioRepository usuarioRepository;
+    private final RolRepository rolRepository;
 
-    public UserDetailsServiceImpl(UsuarioRepository usuarioRepository) {
+    public UserDetailsServiceImpl(UsuarioRepository usuarioRepository, RolRepository rolRepository) {
         this.usuarioRepository = usuarioRepository;
+        this.rolRepository = rolRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String correo) throws UsernameNotFoundException {
-        // Buscamos el usuario usando tu entidad Usuario y el repositorio
+        // Busca el usuario por correo [cite: 110, 114]
         Usuario usuario = usuarioRepository.findByCorreo(correo)
-                .orElseThrow(() -> new UsernameNotFoundException("No existe el usuario: " + correo));
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + correo));
 
-        // Verificamos si el usuario está activo (campo 'activo' de tu entidad)
-        if (!usuario.isActivo()) {
+        // Verifica si está activo (usando el nuevo getter de Integer/Boolean) [cite: 110]
+        if (!Boolean.TRUE.equals(usuario.getActivo())) {
             throw new UsernameNotFoundException("El usuario está desactivado.");
         }
 
-        // Retornamos el usuario para que Spring Security compare la contraseña
+        // Obtiene el nombre del rol desde la tabla roles usando el id_rol [cite: 12, 80, 82]
+        String nombreRol = "USER";
+        if (usuario.getIdRol() != null) {
+            Rol rol = rolRepository.findById(usuario.getIdRol()).orElse(null);
+            if (rol != null && rol.getNombre() != null) {
+                nombreRol = rol.getNombre().replace("ROLE_", "");
+            }
+        }
+
         return User.builder()
                 .username(usuario.getCorreo())
-                .password(usuario.getContrasena()) // Usa tu getter getContrasena()
-                .roles(usuario.getRol().getNombre()) // Asigna el rol desde la relación
+                .password(usuario.getContrasena())
+                .roles(nombreRol)
                 .build();
     }
 }

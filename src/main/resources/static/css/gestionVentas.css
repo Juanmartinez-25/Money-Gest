@@ -1,127 +1,308 @@
-.contenido-ventas {
-    padding: 20px;
-}
-
-.resumen-ventas {
+/* --- CONFIGURACIÓN GENERAL PARA EL MOCKUP --- */
+.contenido.mockup-bg {
+    background-color: #8ccdef; /* Fondo azul cielo del diseño */
+    padding: 0;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "Times New Roman", Times, serif; /* Letra clásica de las etiquetas */
 }
 
-.resumen-ventas h4 {
-   font-weight: bold;
-    color: #3674B5 !important;
-    font-size: 1.4rem;
+/* Cabecera superior */
+.mockup-header {
+    background-color: #6fb0e0; /* Azul de la franja superior */
+    padding: 15px 30px;
 }
 
-.btn-nueva {
-    background-color: #3674B5;
-    color: #fff;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-nueva:hover {
-    background-color: #24578a;
-}
-
-.tabla-ventas table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
-}
-
-.tabla-ventas th, .tabla-ventas td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.tabla-ventas th {
-    background-color: #3674B5;
-    color: #fff;
-}
-
-.btn-editar {
-    background-color: #28a745;
+.mockup-header h1 {
+    font-family: "Arial", sans-serif;
     color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-right: 5px;
-    font-size: 0.85rem;
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
 }
 
-.btn-eliminar {
-    background-color: #dc3545;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 0.85rem;
+/* Contenedor del formulario */
+.mockup-form {
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 1;
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5);
-}
-
-.modal-contenido {
-    background-color: #fefefe;
-    margin: 50px auto;
+/* --- ESTILOS DE LAS CAJAS BLANCAS --- */
+.panel {
+    background-color: white;
     padding: 20px;
-    border-radius: 5px;
-    width: 95%;
-    max-width: 500px;
-    position: relative;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.15);
 }
 
-.cerrar {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 25px;
-    cursor: pointer;
+/* Panel Superior (Factura) */
+.panel-top {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    width: 85%;
+    margin: 0 auto;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.col-left, .col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 45%;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
+.field-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.form-group input,
-.form-group select {
+.field-row label {
+    font-size: 15px;
+    color: black;
+}
+
+/* --- ESTILO DE LOS INPUTS Y BOTONES (Azul oscuro con sombra) --- */
+input[type="text"], input[type="date"], input[type="number"], .btn-blue {
+    background-color: #4a8ebf;
+    border: 1px solid #222;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.4);
+    padding: 4px 10px;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 15px;
+}
+
+/* Hacer que los inputs no tengan las flechas de número por defecto */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* --- SECCIÓN CENTRAL (Columnas) --- */
+.middle-grid {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 10px;
+}
+
+/* Caja de agregar producto */
+.add-product {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    height: fit-content;
+}
+
+.add-product label {
+    font-size: 15px;
+}
+
+.input-center {
+    text-align: center;
+    width: 80%;
+}
+
+.qty-row {
+    display: flex;
+    justify-content: space-around;
     width: 100%;
-    padding: 8px 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    align-items: center;
 }
 
-@media (max-width: 768px) {
-    .resumen-ventas {
-        flex-direction: column;
-        gap: 10px;
-    }
+.qty-number {
+    font-size: 18px;
+}
 
-    .tabla-ventas table, .tabla-ventas th, .tabla-ventas td {
-        font-size: 0.9rem;
-    }
+.btn-add {
+    width: 80%;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Caja de lista de productos */
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 450px;
+}
+
+.product-list {
+    min-height: 200px;
+}
+
+.product-list h4 {
+    margin: 0 0 15px 0;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.list-item {
+    display: flex;
+    gap: 60px;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+/* --- ÁREA DE TOTALES --- */
+.totals-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+    padding-right: 15px;
+}
+
+.field-row-total {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    width: 100%;
+}
+
+.field-row-total label {
+    font-size: 16px;
+}
+
+.field-row-total input {
+    width: 200px;
+}body { margin: 0; }
+
+ .contenedor {
+     display: flex;
+     height: 100vh;
+ }
+
+ .contenido.mockup-bg {
+     background-color: #8ccdef;
+     padding: 0;
+     display: flex;
+     flex-direction: column;
+     flex: 1;
+     min-height: 100vh;
+     font-family: "Times New Roman", Times, serif;
+ }
+
+ .mockup-header { background-color: #6fb0e0; padding: 15px 30px; }
+ .mockup-header h1 { font-family: "Arial", sans-serif; color: white; margin: 0; font-size: 1.8rem; font-weight: bold; }
+
+ .mockup-form { padding: 30px 40px; display: flex; flex-direction: column; gap: 30px; flex: 1; }
+ .panel { background-color: white; padding: 20px; box-shadow: 2px 2px 5px rgba(0,0,0,0.15); }
+
+ .panel-top { display: flex; justify-content: center; gap: 40px; width: 95%; margin: 0 auto; }
+ .col-left, .col-right { display: flex; flex-direction: column; gap: 15px; width: 45%; }
+ .field-row { display: flex; align-items: center; justify-content: space-between; }
+ .field-row label { font-size: 15px; color: black; font-weight: bold; }
+
+ input[type="text"], input[type="date"], input[type="number"], .btn-blue {
+     background-color: #4a8ebf; border: 1px solid #222; box-shadow: 3px 3px 5px rgba(0,0,0,0.4);
+     padding: 4px 10px; color: white; font-family: "Times New Roman", Times, serif; font-size: 15px; outline: none;
+ }
+ input[type="text"]::placeholder, input[type="number"]::placeholder { color: #d0e4f5; }
+
+ .middle-grid { display: flex; justify-content: center; gap: 50px; margin-top: 10px; }
+ .add-product { width: 250px; display: flex; flex-direction: column; align-items: center; gap: 15px; height: fit-content; }
+ .add-product label { font-size: 15px; font-weight: bold; }
+ .input-center { text-align: center; width: 80%; }
+ .qty-row { display: flex; justify-content: space-around; width: 100%; align-items: center; }
+ .btn-add { width: 80%; cursor: pointer; margin-top: 10px; color: white; }
+
+ .right-column { display: flex; flex-direction: column; gap: 20px; width: 450px; }
+ .product-list { min-height: 200px; }
+ .product-list h4 { margin: 0 0 15px 0; font-weight: normal; font-size: 16px; }
+
+ /* Estilo de la tabla de productos agregados */
+ .cart-table { width: 100%; border-collapse: collapse; }
+ .cart-table td { padding: 5px; border-bottom: 1px solid #ddd; font-weight: bold; }
+ .qty-edit { width: 50px; text-align: center; background: white !important; color: black !important; border: 1px solid #4a8ebf !important; }
+
+ .totals-area { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; padding-right: 15px; }
+ .field-row-total { display: flex; align-items: center; justify-content: flex-end; gap: 20px; width: 100%; }
+ .field-row-total label { font-size: 16px; font-weight: bold; }
+ .field-row-total input { width: 200px; text-align: right; pointer-events: none; }
+
+ .bottom-actions { display: flex; justify-content: center; gap: 100px; margin-top: auto; padding-bottom: 20px; }
+ .btn-large { width: 180px; padding: 6px; cursor: pointer; font-size: 16px; color: white; }
+ .btn-blue:active { transform: translate(2px, 2px); box-shadow: 1px 1px 2px rgba(0,0,0,0.4); }
+
+/* --- BOTONES INFERIORES --- */
+.bottom-actions {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-top: auto; /* Empuja los botones al fondo */
+    padding-bottom: 20px;
+}
+
+.btn-large {
+    width: 180px;
+    padding: 6px;
+    cursor: pointer;
+    font-size: 16px;/* --- CONFIGURACIÓN GENERAL PARA EL MOCKUP --- */
+                    body { margin: 0; }
+
+                    .contenido.mockup-bg {
+                        background-color: #8ccdef;
+                        padding: 0;
+                        display: flex;
+                        flex-direction: column;
+                        min-height: 100vh;
+                        font-family: "Times New Roman", Times, serif;
+                    }
+
+                    .mockup-header { background-color: #6fb0e0; padding: 15px 30px; }
+                    .mockup-header h1 { font-family: "Arial", sans-serif; color: white; margin: 0; font-size: 1.8rem; font-weight: bold; }
+
+                    .mockup-form { padding: 30px 40px; display: flex; flex-direction: column; gap: 30px; flex: 1; }
+                    .panel { background-color: white; padding: 20px; box-shadow: 2px 2px 5px rgba(0,0,0,0.15); }
+                    .panel-top { display: flex; justify-content: center; gap: 40px; width: 85%; margin: 0 auto; }
+                    .col-left, .col-right { display: flex; flex-direction: column; gap: 15px; width: 45%; }
+                    .field-row { display: flex; align-items: center; justify-content: space-between; }
+                    .field-row label { font-size: 15px; color: black; font-weight: bold;}
+
+                    input[type="text"], input[type="date"], input[type="number"], .btn-blue {
+                        background-color: #4a8ebf; border: 1px solid #222; box-shadow: 3px 3px 5px rgba(0,0,0,0.4);
+                        padding: 4px 10px; color: white; font-family: "Times New Roman", Times, serif; font-size: 15px; outline: none;
+                    }
+                    input[type="text"]::placeholder, input[type="number"]::placeholder { color: #d0e4f5; }
+                    input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
+                    .middle-grid { display: flex; justify-content: center; gap: 50px; margin-top: 10px; }
+                    .add-product { width: 250px; display: flex; flex-direction: column; align-items: center; gap: 15px; height: fit-content; }
+                    .add-product label { font-size: 15px; font-weight: bold;}
+                    .input-center { text-align: center; width: 80%; }
+                    .qty-row { display: flex; justify-content: space-around; width: 100%; align-items: center; }
+                    .btn-add { width: 80%; cursor: pointer; margin-top: 10px; color: white;}
+
+                    .right-column { display: flex; flex-direction: column; gap: 20px; width: 450px; }
+                    .product-list { min-height: 200px; }
+                    .product-list h4 { margin: 0 0 15px 0; font-weight: normal; font-size: 16px; }
+
+                    /* Estilos de la tabla interna del carrito */
+                    .cart-table { width: 100%; border-collapse: collapse; }
+                    .cart-table td { padding: 5px; border-bottom: 1px solid #ddd; }
+                    .qty-edit { width: 40px; text-align: center; padding: 2px; }
+
+                    .totals-area { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; padding-right: 15px; }
+                    .field-row-total { display: flex; align-items: center; justify-content: flex-end; gap: 20px; width: 100%; }
+                    .field-row-total label { font-size: 16px; }
+                    .field-row-total input { width: 200px; text-align: right; pointer-events: none; }
+
+                    .bottom-actions { display: flex; justify-content: center; gap: 100px; margin-top: auto; padding-bottom: 20px; }
+                    .btn-large { width: 180px; padding: 6px; cursor: pointer; font-size: 16px; color: white;}
+                    .btn-blue:active { transform: translate(2px, 2px); box-shadow: 1px 1px 2px rgba(0,0,0,0.4); }
+}
+
+.btn-blue:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.4);
 }

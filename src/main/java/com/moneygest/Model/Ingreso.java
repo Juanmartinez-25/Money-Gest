@@ -1,51 +1,41 @@
-package com.moneygest.model;
+package com.moneygest.Model;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "ingresos")
+@Table(name = "ingresos_capital")
 public class Ingreso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id_ingreso")
+    private Integer id;
 
-    private String descripcion;
+    @Column(name = "id_socio")
+    private Integer idSocio;
 
-    private double monto;
+    private LocalDateTime fecha;
+    private Double monto;
+    private String metodo;
+    private String estado;
 
-    private LocalDate fecha;
+    @Column(name = "id_usuario")
+    private Integer idUsuario;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public double getMonto() {
-        return monto;
-    }
-
-    public void setMonto(double monto) {
-        this.monto = monto;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
+    // Getters y Setters
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+    public Integer getIdSocio() { return idSocio; }
+    public void setIdSocio(Integer idSocio) { this.idSocio = idSocio; }
+    public LocalDateTime getFecha() { return fecha; }
+    public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
+    public Double getMonto() { return monto; }
+    public void setMonto(Double monto) { this.monto = monto; }
+    public String getMetodo() { return metodo; }
+    public void setMetodo(String metodo) { this.metodo = metodo; }
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
+    public Integer getIdUsuario() { return idUsuario; }
+    public void setIdUsuario(Integer idUsuario) { this.idUsuario = idUsuario; }
 }

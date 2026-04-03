@@ -1,55 +1,43 @@
 package com.moneygest.Model;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "ventas")
 public class Venta {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_venta")
-    private Integer id; // Cambiado a Integer
+    private Integer id_venta;
 
-    @Column(name = "numero_factura")
-    private String numeroFactura;
+    private String numero_factura;
 
-    private LocalDate fecha;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha;
 
-    @Column(name = "metodo_pago")
-    private String metodoPago;
+    private String metodo_pago;
+    private Double subtotal;
+    private Double iva;
+    private Double total;
+    private Integer id_usuario;
 
-    private double total;
-
-    @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
+    public Venta() {}
 
     // Getters y Setters
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
-
-    public String getNumeroFactura() { return numeroFactura; }
-    public void setNumeroFactura(String numeroFactura) { this.numeroFactura = numeroFactura; }
-
-    public LocalDate getFecha() { return fecha; }
-    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
-
-    public String getMetodoPago() { return metodoPago; }
-    public void setMetodoPago(String metodoPago) { this.metodoPago = metodoPago; }
-
-    public double getTotal() { return total; }
-    public void setTotal(double total) { this.total = total; }
-
-    public Usuario getUsuario() { return usuario; }
-    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
-
-    /**
-     * IMPORTANTE: Este método soluciona el error "cannot find symbol: method getMonto(T)"
-     * Mapea 'total' como 'monto' para compatibilidad con cálculos genéricos.
-     */
-    public double getMonto() {
-        return this.total;
-    }
+    public Integer getId_venta() { return id_venta; }
+    public void setId_venta(Integer id_venta) { this.id_venta = id_venta; }
+    public String getNumero_factura() { return numero_factura; }
+    public void setNumero_factura(String numero_factura) { this.numero_factura = numero_factura; }
+    public Date getFecha() { return fecha; }
+    public void setFecha(Date fecha) { this.fecha = fecha; }
+    public String getMetodo_pago() { return metodo_pago; }
+    public void setMetodo_pago(String metodo_pago) { this.metodo_pago = metodo_pago; }
+    public Double getSubtotal() { return subtotal; }
+    public void setSubtotal(Double subtotal) { this.subtotal = subtotal; }
+    public Double getIva() { return iva; }
+    public void setIva(Double iva) { this.iva = iva; }
+    public Double getTotal() { return total; }
+    public void setTotal(Double total) { this.total = total; }
+    public Integer getId_usuario() { return id_usuario; }
+    public void setId_usuario(Integer id_usuario) { this.id_usuario = id_usuario; }
 }

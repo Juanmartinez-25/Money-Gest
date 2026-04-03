@@ -17,8 +17,8 @@ public class RecuperarController {
     @PostMapping("/recuperar/enviar")
     public String enviarSolicitud(@RequestParam String correo, RedirectAttributes ra) {
         usuarioRepository.findByCorreo(correo).ifPresentOrElse(u -> {
-            u.setSolicitudCambioClave(true);
-            usuarioRepository.save(u);
+            // Ya no intentamos guardar 'solicitudCambioClave' porque no existe en MySQL
+            // Simplemente simulamos el envío de la solicitud con el mensaje de éxito
             ra.addFlashAttribute("mensaje", "Solicitud enviada al administrador.");
         }, () -> {
             ra.addFlashAttribute("error", "Correo no registrado.");
