@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hogar - MoneyGest</title>
+    <!-- CSS global del menú lateral -->
+    <link rel="stylesheet" th:href="@{/css/menuLateral.css}">
+    <!-- CSS específico del módulo Hogar -->
+    <link rel="stylesheet" th:href="@{/css/menuPrincipal.css}">
+</head>
+<body>
+<div class="contenedor">
+
+    <!-- Menú lateral -->
+    <aside th:replace="fragments/menuLateral :: menuLateral"></aside>
+
+    <!-- Contenido principal -->
+    <main class="contenido">
+        <div class="barra-superior">
+            <h3>Hogar</h3>
+        </div>
+
+        <!-- Panel usuario -->
+        <section class="usuario-info">
+            <img th:src="@{/img/usuario.png}" alt="Usuario">
+            <div>
+                <h4>Bienvenido, [Usuario]</h4>
+                <p>Último acceso: 27/08/2025</p>
+            </div>
+        </section>
+
+        <!-- Panel bienvenida -->
+        <section class="panel-bienvenida">
+            <h3>Bienvenido al sistema MoneyGest</h3>
+            <p>Aquí podrás acceder a ventas, informes, capital, gastos y administración.</p>
+        </section>
+
+        <!-- Tarjetas resumen -->
+        <section class="cards-resumen">
+            <div class="card resumen asignaciones">
+                <h4>Asignaciones activas</h4>
+                <p class="total" th:text="${asignacionesActivas}">100%</p>
+            </div>
+            <div class="card resumen porcentaje">
+                <h4>% Asignación real</h4>
+                <p class="total" th:text="${porcentajeAsignacion}">N/D</p>
+            </div>
+            <div class="card resumen cumplimiento">
+                <h4>% Cumplimiento (meses)</h4>
+                <p class="total" th:text="${cumplimientoMeses}">N/D</p>
+            </div>
+        </section>
+
+        <!-- Noticias / Información -->
+        <section class="panel-noticias">
+            <h4>Noticias MoneyGest</h4>
+            <p>MoneyGest es el sistema de gestión financiera que te permite controlar ingresos, gastos, ventas y administración de roles de manera eficiente y sencilla.</p>
+        </section>
+
+        <!-- Novedades del proyecto -->
+        <section class="panel-novedades">
+            <h4>Nueva versión 2.0</h4>
+            <ul>
+                <li>Se mejoran los iconos y el nuevo menú lateral.</li>
+                <li>Se creó dashboard de inicio para Hogar.</li>
+                <li>Se agregó sección de usuario y bienvenida.</li>
+                <li>Se mejoró la visualización de asignaciones y cumplimiento.</li>
+                <li>Se añadió panel de noticias y novedades.</li>
+                <li>Se incorporó panel de subida de archivos tipo dropzone.</li>
+            </ul>
+        </section>
+
+        <!-- Subida de archivos -->
+        <section class="panel-archivos">
+            <h4>Subir archivos</h4>
+            <p>Suelta los archivos aquí</p>
+            <div class="dropzone">+</div>
+        </section>
+
+    </main>
+
+</div>
+</body>
+</html>

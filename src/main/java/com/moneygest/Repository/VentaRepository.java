@@ -1,0 +1,10 @@
+package com.moneygest.Repository;
+
+import com.moneygest.Model.Venta;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface VentaRepository extends JpaRepository<Venta, Integer> {
+    // JpaRepository ya incluye save, findAll y deleteById
+}

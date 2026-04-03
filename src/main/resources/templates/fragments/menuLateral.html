@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<aside class="menu-lateral" th:fragment="menuLateral">
+    <section class="sectionLogo">
+        <div class="containerHeader">
+            <img class="logo" th:src="@{/img/logoMenu.png}" alt="Logo empresa">
+        </div>
+    </section>
+    <ul>
+        <li><a th:href="@{/menuPrincipal}"><img th:src="@{/img/hogar.png}"> Hogar</a></li>
+        <li><a th:href="@{/ventas}"><img th:src="@{/img/gestionVentas.png}"> Gestión de ventas</a></li>
+        <li><a th:href="@{/informes}"><img th:src="@{/img/informe.png}"> Informes</a></li>
+        <li><a th:href="@{/capital}"><img th:src="@{/img/ingresoCapital.png}"> Ingreso de capital</a></li>
+        <li><a th:href="@{/gastos}"><img th:src="@{/img/gestionGastos.png}"> Gestión de gastos</a></li>
+
+        <li sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/admin}">
+                <img th:src="@{/img/administrador.png}"> Administración roles
+            </a>
+        </li>
+
+        <li><a th:href="@{/logout}"><img th:src="@{/img/cerrarSesion.png}"> Cerrar sesión</a></li>
+    </ul>
+</aside>
+</body>
+</html>

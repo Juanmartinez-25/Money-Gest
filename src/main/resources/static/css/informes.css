@@ -1,0 +1,136 @@
+:root {
+    --color-primario: #3674B5; /* barra azul */
+    --color-secundario: #A1E3F9;
+    --color-terciario: #FFFFFF;
+    --color-text-dark: #333333;
+    --color-text-light: #ffffff;
+}
+
+/* =========================
+   CONTENIDO PRINCIPAL
+========================= */
+.contenido-ventas {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* =========================
+   CARDS RESUMEN DE VENTAS
+========================= */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--color-terciario);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.card h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.card .total {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/* Colores por tipo */
+.ventas-totales .total {
+    color: #2e7d32; /* verde */
+}
+
+.ventas-mensuales .total {
+    color: #1565c0; /* azul */
+}
+
+.profit .total {
+    color: #c62828; /* rojo */
+}
+
+/* =========================
+   TABLA DE VENTAS
+========================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+thead {
+    background: #f2f2f2;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+th {
+    font-weight: bold;
+    color: #444;
+}
+
+tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* =========================
+   BOTONES
+========================= */
+.btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-nueva {
+    background-color: var(--color-primario); /* azul */
+    color: var(--color-text-light);
+}
+
+.btn-editar {
+    background-color: #FFA500; /* naranja */
+    color: var(--color-text-light);
+}
+
+.btn-eliminar {
+    background-color: #c62828; /* rojo */
+    color: var(--color-text-light);
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .total {
+        font-size: 22px;
+    }
+
+    table th, table td {
+        font-size: 12px;
+    }
+}

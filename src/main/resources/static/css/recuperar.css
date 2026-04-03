@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Aleo:wght@100..900&family=Arimo:wght@400..700&family=Lemon&family=Poppins:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-primario: #3674B5; /* Azul Principal */
+    --color-secundario: #A1E3F9; /* Azul Claro */
+    --color-terciario: #000000; /* Negro */
+
+    --fuente-lemon: 'Lemon', serif;
+    --fuente-aleo: 'Aleo', serif;
+}
+
+body {
+    background-image: url('../img/fondo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: var(--fuente-aleo);
+}
+
+.contenedorMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.contenedorInicioSesion {
+    background-color: var(--color-secundario);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    width: 90%;
+    max-width: 350px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 5px;
+}
+
+.titleInicio {
+    font-family: var(--fuente-lemon);
+    font-size: 1.1rem;
+    color: var(--color-terciario);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.textoUsuario {
+    font-family: var(--fuente-aleo);
+    font-size: 0.8rem;
+    color: var(--color-terciario);
+    display: block;
+    text-align: left;
+    margin-left: 35px;
+    margin-bottom: 5px;
+}
+
+.containerInput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.botonUsuario {
+    border-radius: 20px;
+    border: none;
+    width: 100%;
+    max-width: 270px;
+    height: 38px;
+    padding: 0 15px;
+    font-size: 0.75rem;
+    font-family: var(--fuente-aleo);
+    color: var(--color-terciario);
+    outline: none;
+}
+
+.botonSiguiente {
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 270px;
+    height: 38px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 20px;
+    font-family: var(--fuente-aleo);
+    transition: background 0.3s ease;
+}
+
+.botonSiguiente:hover {
+    background-color: #1b4f8a;
+}
+
+.separador hr {
+    border: none;
+    border-top: 1px solid var(--color-terciario);
+    margin: 20px auto 10px;
+    width: 80%;
+}
+
+.linkVolver {
+    text-decoration: none;
+    font-family: var(--fuente-aleo);
+    font-size: 0.8rem;
+    color: var(--color-terciario);
+    font-weight: bold;
+}
+
+.mensaje-info {
+    color: var(--color-primario);
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

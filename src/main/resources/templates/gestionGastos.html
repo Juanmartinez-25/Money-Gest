@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión gastos</title>
+    <!-- CSS global -->
+    <link rel="stylesheet" th:href="@{/css/menuLateral.css}">
+    <!-- CSS específico -->
+    <link rel="stylesheet" th:href="@{/css/gestionGastos.css}">
+</head>
+<body>
+<div class="contenedor">
+
+    <!-- Menú lateral (fragment reutilizable) -->
+    <aside th:replace="fragments/menuLateral :: menuLateral"></aside>
+
+    <!-- Contenido principal -->
+    <main class="contenido">
+        <div class="barra-superior">
+            <h3>Gestión gastos</h3>
+        </div>
+
+        <!-- Aquí tu contenido dinámico -->
+        <div class="menuContenido">
+            <section class="filter-section">
+                <div class="filter-group">
+                    <label for="fecha-desde">Fecha desde</label>
+                    <div class="input-container">
+                        <input type="text" id="fecha-desde" placeholder="DD/MM/AA">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label for="fecha-hasta">Fecha hasta</label>
+                    <div class="input-container">
+                        <input type="text" id="fecha-hasta" placeholder="DD/MM/AA">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label for="estado">Estado</label>
+                    <select id="estado" class="select-field"><option>Estado</option></select>
+                </div>
+                <div class="filter-group">
+                    <label for="unidad">Unidad de Negocio</label>
+                    <select id="unidad" class="select-field"><option>Unidad de Negocio</option></select>
+                </div>
+                <div class="filter-group">
+                    <label for="categoria">Categoría</label>
+                    <select id="categoria" class="select-field"><option>Categoría</option></select>
+                </div>
+                <div class="filter-group">
+                    <label for="subcategoria">Subcategoría</label>
+                    <select id="subcategoria" class="select-field"><option>Subcategoría</option></select>
+                </div>
+            </section>
+            <section class="data-and-register-grid">
+
+                <div class="left-panel">
+                    <div class="new-entry-card card">
+                        <h2>NUEVO REGISTRO DE</h2>
+                        <ul>
+                            <li><a href="#">[Registro de Gastos]</a></li>
+                            <li><a href="#">[Proveedores]</a></li>
+                            <li><a href="#">[Nómina]</a></li>
+                            <li><a href="#">[Créditos y Finanzas]</a></li>
+                            <li><a href="#">[Inventario Dañado]</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="kpi-report-section">
+                        <h3>[Indicadores]</h3>
+                        <h4>KPIs</h4>
+                        <button class="download-btn">Descargar Reporte (Pdf, Excel)</button>
+                    </div>
+                </div>
+                <div class="right-panel">
+                    <div class="data-card card total-expenses">
+                        <p class="card-title">GASTOS</p>
+                        <p class="value">$30.000 Billones USD</p>
+                        <p class="subtitle">TOTALES</p>
+                        <div class="chart-placeholder"></div> </div>
+
+                    <div class="data-card card budget-execution">
+                        <p class="card-title">EJECUCIÓN</p>
+                        <p class="value-large">PRESUPUESTAL</p>
+                        <p class="subtitle">$50.000 Billones US</p>
+                        <p class="percentage">Equivale al 25% </p>
+                        <div class="chart-placeholder chart-pie-small"></div> </div>
+
+                    <div class="data-card card lost-inventory">
+                        <p class="card-title">INVENTARIO</p>
+                        <p class="value">PERDIDO</p>
+                        <div class="chart-placeholder chart-donut"></div> </div>
+
+                    <div class="data-card card available-balance">
+                        <p class="card-title">SALDO DISPONIBLE</p>
+                        <p class="value-large">$60.000 Billones $</p>
+                        <div class="chart-placeholder chart-mix"></div> </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+</div>
+</body>
+</html>

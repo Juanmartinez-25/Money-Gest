@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-primario: #3674B5;
+    --color-secundario: #b1aaaada;
+    --color-terciario: #000000;
+    --color-cuaternario: #629ad2;
+    --color-quinario: #ffffff;
+    --color-senario: #79CDE8;
+
+    --fuente-principal: 'Roboto', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fuente-principal);
+}
+
+.contenedor {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* === Menú lateral === */
+.menu-lateral {
+    background-color: var(--color-cuaternario);
+    color: var(--color-quinario);
+    width: 280px;
+    min-width: 280px;
+    flex-shrink: 0;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.sectionLogo {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-primario);
+}
+
+.containerHeader {
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+    padding: 0;
+    height: 110px;
+}
+
+.logo {
+    width: 150px;
+    height: 160px;
+    padding: 0;
+}
+
+.menu-lateral ul {
+    list-style: none;
+    margin-left: 20px;
+}
+
+.menu-lateral li {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+    font-size: 0.95em;
+    cursor: pointer;
+}
+
+.menu-lateral li img {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.menu-lateral a {
+    text-decoration: none !important;
+    color: var(--color-quinario) !important;
+    display: flex;
+    align-items: center;
+}
+
+/* === Barra superior de cada página === */
+.barra-superior {
+    background-color: var(--color-cuaternario);
+    color: white;
+    padding: 25px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* === Contenido principal === */
+.contenido {
+    flex-grow: 1;
+    background-color: var(--color-senario);
+    box-sizing: border-box;
+    overflow-y: auto;
+    height: 100vh;
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Informes</title>
+    <!-- CSS global -->
+    <link rel="stylesheet" th:href="@{/css/menuLateral.css}">
+    <!-- CSS específico -->
+    <link rel="stylesheet" th:href="@{/css/informes.css}">
+</head>
+<body>
+<div class="contenedor">
+
+    <!-- Menú lateral (fragment reutilizable) -->
+    <aside th:replace="fragments/menuLateral :: menuLateral"></aside>
+
+    <!-- Contenido principal -->
+    <main class="contenido">
+        <div class="barra-superior">
+            <h3>Informes</h3>
+        </div>
+
+        <!-- Aquí tu contenido dinámico -->
+        <section class="contenido-informes">
+            <!-- CONTENIDO REAL DE INFORMES -->
+            <section class="contenido-informes">
+
+                <!-- TARJETAS RESUMEN -->
+                <div class="cards">
+
+                    <div class="card resumen ingresos">
+                        <h4>Total Ingresos</h4>
+                        <p class="total">
+                            $ <span th:text="${totalIngresos}">0</span>
+                        </p>
+                    </div>
+
+                    <div class="card resumen gastos">
+                        <h4>Total Gastos</h4>
+                        <p class="total">
+                            $ <span th:text="${totalGastos}">0</span>
+                        </p>
+                    </div>
+
+                    <div class="card resumen balance">
+                        <h4>Balance General</h4>
+                        <p class="total">
+                            $ <span th:text="${balance}">0</span>
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- TABLA DETALLE -->
+                <div class="card">
+                    <h4>Movimientos financieros</h4>
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tipo</th>
+                            <th>Descripción</th>
+                            <th>Monto</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="mov : ${movimientos}">
+                            <td th:text="${mov.fecha}"></td>
+                            <td th:text="${mov.tipo}"></td>
+                            <td th:text="${mov.descripcion}"></td>
+                            <td>
+                                $ <span th:text="${mov.monto}"></span>
+                            </td>
+                        </tr>
+
+                        <tr th:if="${#lists.isEmpty(movimientos)}">
+                            <td colspan="4">No hay movimientos registrados</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+        </section>
+    </main>
+
+</div>
+</body>
+</html>

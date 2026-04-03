@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Aleo:wght@100..900&family=Arimo:wght@400..700&family=Lemon&family=Poppins:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-primario: #3674B5;
+    --color-secundario: #A1E3F9;
+    --color-terciario: #000000;
+    --fuente-aleo: 'Aleo', serif;
+}
+
+body {
+    background-image: url('../img/fondo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.contenedorMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.contenedorInicioSesion {
+    background-color: var(--color-secundario);
+    border-radius: 20px;
+    padding: 30px; /* Un poco más de aire en los bordes */
+    /* text-align: center; ELIMINADO para alineación manual */
+    width: 90%;
+    height: auto;
+    min-height: 580px;
+    max-width: 350px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- HEADER (Tus 35px y 120px exactos) --- */
+.containerHeader {
+    display: flex;
+    align-items: center;
+    margin-left: 35px; /* Tu margen original */
+    margin-bottom: 25px; /* Más espacio abajo */
+}
+
+.logo {
+    width: 120px;
+    height: 130px;
+}
+
+.containerParrafologo img {
+    width: 100px;
+    height: 140px;
+    margin-top: 10px;
+}
+
+/* --- TÍTULO (Centrado individualmente) --- */
+.containerTitleInicio {
+    margin: 0 auto 15px auto; /* Centra el bloque */
+    text-align: center;
+    max-width: 270px;
+}
+
+.titleInicio {
+    font-size: 1.1rem;
+    font-family: "Roboto", sans-serif;
+    color: var(--color-terciario);
+}
+
+/* --- FORMULARIO Y INPUTS (Alineación corregida) --- */
+.form-moneygest {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los bloques de input */
+}
+
+/* CONTENEDORES DE TEXTO (Para que el label se alinee a la IZQUIERDA del bloque de 270px) */
+.containerTextoUsuario, .containerTextoContrasena {
+    width: 100%;
+    max-width: 270px; /* El ancho de tus inputs */
+    text-align: left; /* Alinea el texto a la izquierda */
+    margin-bottom: 5px;
+}
+
+.textoUsuario, .textoContrasena {
+    font-family: var(--fuente-aleo);
+    font-size: 0.8rem;
+    color: var(--color-terciario);
+}
+
+/* CONTENEDORES DE BOTÓN/INPUT (Tus anchos exactos) */
+.containerBotonUsuario, .containerBotonContrasena {
+    width: 100%;
+    max-width: 270px;
+    margin-bottom: 15px;
+    position: relative; /* Para el ojo */
+}
+
+/* TUS INPUTS EXACTOS */
+.botonUsuario, .botonContrasena {
+    border-radius: 20px;
+    border: none;
+    width: 100%;
+    height: 38px;
+    padding: 5px 45px 5px 15px; /* Espacio para el ojo */
+    font-size: 0.7rem;
+    font-family: var(--fuente-aleo);
+}
+
+/* EL OJO (Ubicación exacta) */
+.togglePassword {
+    position: absolute;
+    right: 55px; /* Ajustado para que quede dentro del input */
+    top: 50%; /* Centrado verticalmente respecto al input */
+    transform: translateY(-50%); /* Centrado vertical exacto */
+    cursor: pointer;
+    font-size: 16px;
+    color: #555;
+    z-index: 10;
+}
+
+/* TUS BOTÓNES SIGUIENTE EXACTOS */
+.botonSiguiente {
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 270px;
+    height: 38px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 15px;
+    margin-bottom: 20px; /* Espacio abajo */
+}
+
+.mensaje-error {
+    color: red;
+    font-family: var(--fuente-aleo);
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin: 0 auto 10px auto; /* Centrado */
+    text-align: center;
+    max-width: 270px;
+}
+
+/* --- SEPARADOR (Empuja al fondo) --- */
+.separador {
+    margin-top: auto;
+    text-align: center;
+}
+
+.separador hr {
+    border: none;
+    border-top: 1px solid #000000;
+    margin: 10px auto;
+    width: 80%;
+}
+
+.textoSeparador {
+    font-family: var(--fuente-aleo);
+    font-size: 0.8rem;
+    color: var(--color-terciario);
+    text-decoration: underline;
+}

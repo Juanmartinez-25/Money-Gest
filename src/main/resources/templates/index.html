@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión - Mercaplasticos</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<main class="contenedorMain">
+    <section class="contenedorInicioSesion">
+        <div class="containerHeader">
+            <img class="logo" th:src="@{/img/Logo.png}" alt="Logo de empresa">
+            <div class="containerParrafologo">
+                <img class="logo" th:src="@{/img/letrasLogo.png}" alt="Letras logo de empresa">
+            </div>
+        </div>
+
+        <div class="containerTitleInicio">
+            <h1 class="titleInicio">¡Bienvenido a Moneygest!</h1>
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <div class="containerTextoUsuario">
+                <p class="textoUsuario">Usuario (@mercaplasticos.com)</p>
+            </div>
+            <div class="containerBotonUsuario">
+                <input name="username" id="username" class="botonUsuario" type="email"
+                       placeholder="ejemplo@mercaplasticos.com" required>
+            </div>
+
+            <div class="containerTextoContrasena">
+                <p class="textoContrasena">Contraseña</p>
+            </div>
+            <div class="containerBotonContrasena">
+                <input name="password" id="password" class="botonContrasena" type="password"
+                       placeholder="Ingrese su contraseña" required>
+                <i class="fa-solid fa-eye-slash togglePassword"></i>
+            </div>
+
+            <div class="containerBotonSiguiente">
+                <button type="submit" id="loginBtn" class="botonSiguiente">Siguiente</button>
+            </div>
+        </form>
+
+        <p id="mensajeError" class="mensaje-error" th:if="${param.error}">
+            Usuario o contraseña incorrectos
+        </p>
+
+        <div class="separador">
+            <hr>
+            <a th:href="@{/recuperar}" class="textoSeparador">¿Olvidó su contraseña?</a>
+        </div>
+    </section>
+</main>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>
