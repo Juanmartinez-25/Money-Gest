@@ -64,8 +64,11 @@
                         </td>
                         <td>
                             <select name="nuevoRol" class="botonUsuario" style="padding: 5px; width: auto;">
-                                <option th:each="r : ${roles}" th:value="${r.nombre}"
-                                        th:text="${r.nombre}" th:selected="${u.rol != null and u.rol.nombre == r.nombre}"></option>
+                                <option th:each="r : ${roles}"
+                                        th:value="${r.nombre}"
+                                        th:text="${r.nombre}"
+                                        th:selected="${u.idRol != null and u.idRol == r.id}">
+                                </option>
                             </select>
                         </td>
                         <td>

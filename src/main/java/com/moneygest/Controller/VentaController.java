@@ -4,8 +4,10 @@ import com.moneygest.Model.Venta;
 import com.moneygest.Service.VentaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model; // Importación necesaria
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -17,12 +19,21 @@ public class VentaController {
 
     @GetMapping
     public String mostrarGestionVentas(Model model) {
-        // Esta línea es la que soluciona el error:
-        // Le dice a Thymeleaf: "Aquí tienes el objeto 'venta' para el formulario"
         model.addAttribute("venta", new Venta());
-
         return "gestionVentas";
     }
 
-    // ... tus otros métodos (@PostMapping, etc.)
+    @PostMapping("/guardar")
+    public String guardarVenta(@ModelAttribute Venta venta) {
+        // Truco: Copiamos el valor del total al monto para llenar ambas columnas
+        if(venta.getTotal() != null) {
+            venta.setMonto(venta.getTotal());
+        } else {
+            venta.setMonto(0.0);
+            venta.setTotal(0.0);
+        }
+
+        ventaService.guardarVentaSimple(venta);
+        return "redirect:/ventas";
+    }
 }

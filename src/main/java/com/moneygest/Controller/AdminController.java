@@ -33,16 +33,17 @@ public class AdminController {
                                 RedirectAttributes ra) {
         Usuario u = usuarioRepository.findById(id).orElse(null);
         if (u != null) {
-            // Buscamos el rol por nombre y le asignamos solo el ID al usuario
             Rol rol = rolRepository.findByNombre(nuevoRol);
             if (rol != null) {
                 u.setIdRol(rol.getId());
             }
 
+            // Si escribiste una clave nueva, la actualiza y APAGA la alerta
             if (nuevaPassword != null && !nuevaPassword.isEmpty()) {
                 u.setContrasena(nuevaPassword);
-                // Se eliminó la alerta amarilla porque la BD no tiene esa columna
+                u.setSolicitudCambioClave(false);
             }
+
             usuarioRepository.save(u);
             ra.addFlashAttribute("mensaje", "Usuario actualizado correctamente.");
         }
@@ -62,9 +63,11 @@ public class AdminController {
             n.setNombre(nombre);
             n.setCorreo(correo);
             n.setContrasena(contrasena);
-            n.setActivo(true); // Es buena práctica activarlo al crearlo
+            n.setActivo(true);
 
-            // Asignamos el ID del rol por defecto
+            // 👇 ESTO SOLUCIONA TU ERROR (SQL 1048) 👇
+            n.setSolicitudCambioClave(false);
+
             Rol rolDefault = rolRepository.findByNombre("ROLE_USER");
             if (rolDefault != null) {
                 n.setIdRol(rolDefault.getId());
@@ -73,7 +76,7 @@ public class AdminController {
             usuarioRepository.save(n);
             ra.addFlashAttribute("mensaje", "Usuario registrado con éxito.");
         } catch(Exception e) {
-            ra.addFlashAttribute("error", "El correo ya existe en el sistema.");
+            ra.addFlashAttribute("error", "El correo ya existe o hubo un error en la BD.");
         }
         return "redirect:/admin";
     }

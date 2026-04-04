@@ -5,8 +5,6 @@ import com.moneygest.Repository.GastoRepository;
 import com.moneygest.Repository.IngresoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -25,13 +23,9 @@ public class GastoService {
         return gastoRepository.save(gasto);
     }
 
-    // Lógica simulada para el Saldo Disponible (Ingresos - Gastos)
-    // Más adelante puedes conectarlo con tu IngresoRepository
     public Double calcularSaldoDisponible() {
         Double gastosTotales = gastoRepository.totalGastos();
-        // Llamada real al repositorio de ingresos
         Double ingresosReales = ingresoRepository.totalIngresos();
         return ingresosReales - gastosTotales;
     }
-
 }

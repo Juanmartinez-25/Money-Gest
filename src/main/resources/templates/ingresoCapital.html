@@ -3,42 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingreso Capital</title>
-    <!-- CSS global -->
+    <title>Ingreso de Capital - MoneyGest</title>
     <link rel="stylesheet" th:href="@{/css/menuLateral.css}">
-    <!-- CSS específico -->
-    <link rel="stylesheet" th:href="@{/css/ingresoCapital.css}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/ingresoCapital.css(v=${#dates.createNow().getTime()})}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 <div class="contenedor">
 
-    <!-- Menú lateral reutilizando el fragment -->
-    <aside th:replace="fragments/menuLateral :: menuLateral"></aside>
+    <aside th:replace="~{fragments/menuLateral :: menuLateral}"></aside>
 
-    <!-- Contenido principal -->
-    <main class="contenido">
-        <div class="barra-superior">
-            <h3>Ingreso capital</h3>
+    <main class="contenido-capital">
+        <h1 class="titulo-vista">Ingreso de capital</h1>
+
+        <div class="tarjeta-blanca">
+            <form id="formIngreso" class="grid-formulario">
+                <div class="grupo-input">
+                    <label>SOCIO</label>
+                    <select id="socioIngreso" th:disabled="${esSocio}" required>
+                        <option value="1" th:selected="${idUsuarioLogueado == 1}">Socio Principal</option>
+                        <option value="2" th:selected="${idUsuarioLogueado == 2}">Socio Secundario</option>
+                        <option value="3" th:selected="${idUsuarioLogueado == 3}">Admin</option>
+                    </select>
+                    <input type="hidden" id="socioOculto" th:if="${esSocio}" th:value="${idUsuarioLogueado}">
+                </div>
+
+                <div class="grupo-input">
+                    <label>ESTADO</label>
+                    <select id="estadoIngreso" onchange="verificarAnulacion()" required>
+                        <option value="Activo">Activo</option>
+                        <option value="Anulado">Anulado</option>
+                    </select>
+                </div>
+
+                <div class="grupo-input">
+                    <label>MÉTODO DE INGRESO</label>
+                    <select id="metodoIngreso" required>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Transferencia">Transferencia</option>
+                        <option value="Cheque">Cheque</option>
+                    </select>
+                </div>
+
+                <div class="grupo-input">
+                    <label>VALOR</label>
+                    <div class="input-con-icono">
+                        <span>$</span>
+                        <input type="number" id="valorIngreso" required step="0.01">
+                    </div>
+                </div>
+
+                <div class="grupo-input">
+                    <label>FECHA</label>
+                    <input type="date" id="fechaIngreso" required>
+                </div>
+
+                <div class="grupo-input">
+                    <label>MOTIVO ANULACIÓN</label>
+                    <select id="motivoAnulacion" disabled>
+                        <option value="">Seleccione...</option>
+                        <option value="Error de digitación">Error de digitación</option>
+                        <option value="Devolución">Devolución</option>
+                    </select>
+                </div>
+            </form>
         </div>
 
-        <!-- Aquí va el formulario o contenido dinámico -->
-        <section class="formulario-capital">
-            <form>
-                <label for="monto">Monto:</label>
-                <input type="number" id="monto" name="monto" required>
+        <div class="contenedor-botones">
+            <button type="button" class="btn btn-ingresar" onclick="registrarIngreso()">Ingresar</button>
+            <button type="button" class="btn btn-limpiar" onclick="limpiarFormulario()">Limpiar</button>
+            <button type="button" class="btn btn-anular" onclick="activarModoAnulacion()">Anular</button>
 
-                <label for="fecha">Fecha:</label>
-                <input type="date" id="fecha" name="fecha" required>
+            <button type="button" class="btn" style="background-color: #28a745; color: white; border-color: #1e7e34; margin-left: auto;" onclick="abrirModalInventario()">
+                <i class="fa-solid fa-box-open"></i> Ingresar a Bodega
+            </button>
+        </div>
 
-                <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion"></textarea>
+        <div class="tarjeta-blanca historico-container">
+            <div class="seccion-tabla">
+                <label>HISTORICO</label>
+                <table class="tabla-historico">
+                    <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Socio</th>
+                        <th>Monto</th>
+                        <th>Metodo</th>
+                        <th>Estado</th>
+                    </tr>
+                    </thead>
+                    <tbody id="cuerpoTablaHistorico">
+                    </tbody>
+                </table>
+            </div>
 
-                <button type="submit">Registrar</button>
-            </form>
-        </section>
+            <div class="seccion-total">
+                <label>Total Actual</label>
+                <h2 id="textoTotalActual">$ 0</h2>
+            </div>
+        </div>
+
     </main>
-
 </div>
+
+<div id="modalInventario" class="modal-oculto">
+    <div class="modal-contenido">
+        <span class="cerrar-modal" onclick="cerrarModalInventario()">&times;</span>
+        <h2 style="margin-top: 0; margin-bottom: 20px; font-family: Arial, sans-serif;">Ingresar Mercancía</h2>
+
+        <form id="formInventario" style="display: flex; flex-direction: column; gap: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <label>Código:</label>
+                <input type="text" id="invCodigo" required style="width: 60%; padding: 8px;">
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <label>Nombre:</label>
+                <input type="text" id="invNombre" required style="width: 60%; padding: 8px;">
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <label>Precio Compra:</label>
+                <input type="number" id="invCompra" style="width: 60%; padding: 8px;" step="0.01">
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <label>Precio Venta:</label>
+                <input type="number" id="invVenta" style="width: 60%; padding: 8px;" step="0.01">
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <label>Stock entrante:</label>
+                <input type="number" id="invStock" required style="width: 60%; padding: 8px;">
+            </div>
+
+            <button type="button" class="btn" style="background-color: #3a75b6; color: white; margin-top: 15px; width: 100%; padding: 12px; font-size: 1rem; cursor: pointer; border: none; border-radius: 3px;" onclick="guardarInventario()">
+                <i class="fa-solid fa-floppy-disk"></i> Guardar en Bodega
+            </button>
+        </form>
+    </div>
+</div>
+
+<script th:src="@{/js/ingresoCapital.js}"></script>
 </body>
 </html>

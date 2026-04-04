@@ -29,7 +29,6 @@ public class GastoController {
         return new ResponseEntity<>(gastoService.guardarGasto(gasto), HttpStatus.CREATED);
     }
 
-    // Nuevo endpoint para que el JS consuma el Saldo Disponible
     @GetMapping("/saldo")
     public ResponseEntity<Map<String, Double>> obtenerSaldo() {
         Map<String, Double> respuesta = new HashMap<>();

@@ -1,43 +1,65 @@
 package com.moneygest.Model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 @Entity
 @Table(name = "ventas")
 public class Venta {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_venta;
+    @Column(name = "id_venta")
+    private Integer idVenta;
 
-    private String numero_factura;
+    @Column(name = "numero_factura")
+    private String numeroFactura;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
 
-    private String metodo_pago;
+    @Column(name = "metodo_pago")
+    private String metodoPago;
+
     private Double subtotal;
     private Double iva;
     private Double total;
-    private Integer id_usuario;
+
+    // Agregamos el monto también para que la base de datos no ponga problema
+    private Double monto;
+
+    @Column(name = "id_usuario")
+    private Integer idUsuario;
 
     public Venta() {}
 
-    // Getters y Setters
-    public Integer getId_venta() { return id_venta; }
-    public void setId_venta(Integer id_venta) { this.id_venta = id_venta; }
-    public String getNumero_factura() { return numero_factura; }
-    public void setNumero_factura(String numero_factura) { this.numero_factura = numero_factura; }
+    // --- GETTERS Y SETTERS ---
+    public Integer getIdVenta() { return idVenta; }
+    public void setIdVenta(Integer idVenta) { this.idVenta = idVenta; }
+
+    public String getNumeroFactura() { return numeroFactura; }
+    public void setNumeroFactura(String numeroFactura) { this.numeroFactura = numeroFactura; }
+
     public Date getFecha() { return fecha; }
     public void setFecha(Date fecha) { this.fecha = fecha; }
-    public String getMetodo_pago() { return metodo_pago; }
-    public void setMetodo_pago(String metodo_pago) { this.metodo_pago = metodo_pago; }
+
+    public String getMetodoPago() { return metodoPago; }
+    public void setMetodoPago(String metodoPago) { this.metodoPago = metodoPago; }
+
     public Double getSubtotal() { return subtotal; }
     public void setSubtotal(Double subtotal) { this.subtotal = subtotal; }
+
     public Double getIva() { return iva; }
     public void setIva(Double iva) { this.iva = iva; }
+
     public Double getTotal() { return total; }
     public void setTotal(Double total) { this.total = total; }
-    public Integer getId_usuario() { return id_usuario; }
-    public void setId_usuario(Integer id_usuario) { this.id_usuario = id_usuario; }
+
+    public Double getMonto() { return monto; }
+    public void setMonto(Double monto) { this.monto = monto; }
+
+    public Integer getIdUsuario() { return idUsuario; }
+    public void setIdUsuario(Integer idUsuario) { this.idUsuario = idUsuario; }
 }

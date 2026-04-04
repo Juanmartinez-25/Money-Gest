@@ -18,19 +18,32 @@ public class Usuario {
     @Column(name = "id_rol")
     private Integer idRol;
 
-    private Boolean activo; // MySQL TINYINT(1) se mapea perfecto a Boolean
+    private Boolean activo;
+
+    // 👇 FALTABA ESTA VARIABLE PARA EL HTML 👇
+    @Column(name = "solicitud_cambio_clave")
+    private Boolean solicitudCambioClave;
 
     // Getters y Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
+
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
+
     public String getCorreo() { return correo; }
     public void setCorreo(String correo) { this.correo = correo; }
+
     public String getContrasena() { return contrasena; }
     public void setContrasena(String contrasena) { this.contrasena = contrasena; }
+
     public Integer getIdRol() { return idRol; }
     public void setIdRol(Integer idRol) { this.idRol = idRol; }
+
     public Boolean getActivo() { return activo; }
     public void setActivo(Boolean activo) { this.activo = activo; }
+
+    // 👇 Nuevos Get y Set 👇
+    public Boolean getSolicitudCambioClave() { return solicitudCambioClave; }
+    public void setSolicitudCambioClave(Boolean solicitudCambioClave) { this.solicitudCambioClave = solicitudCambioClave; }
 }
