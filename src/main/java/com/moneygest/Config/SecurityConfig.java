@@ -26,13 +26,14 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/login", "/css/**", "/js/**", "/img/**", "/recuperar").permitAll()
+                        // 👇 AQUÍ AÑADIMOS "/recuperar/enviar" A LA LISTA DE PERMITIDOS 👇
+                        .requestMatchers("/", "/login", "/css/**", "/js/**", "/img/**", "/recuperar", "/recuperar/enviar").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/menuPrincipal", true) // <-- FIX: Sin el .html
+                        .defaultSuccessUrl("/menuPrincipal", true)
                         .failureUrl("/?error=true")
                         .permitAll()
                 )

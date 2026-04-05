@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Gastos - Merca-plasticos</title>
     <link rel="stylesheet" th:href="@{/css/menuLateral.css}">
-    <link rel="stylesheet" th:href="@{/css/gestionGastos.css}">
+    <link rel="stylesheet" th:href="@{/css/gestionGastos.css(v=${#dates.createNow().getTime()})}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -21,37 +21,15 @@
         <div class="content-wrapper">
             <section class="filters-section">
                 <div class="filter-row">
-                    <div class="filter-group">
-                        <label>Fecha desde:</label>
-                        <input type="date" id="fechaDesde">
-                    </div>
-                    <div class="filter-group">
-                        <label>Estado:</label>
-                        <select id="estado">
-                            <option value="">Seleccione...</option>
-                            <option value="Aprobado">Aprobado</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label>Categoría:</label>
-                        <select id="categoria"><option value="">Seleccione...</option></select>
-                    </div>
-                </div>
-                <div class="filter-row">
-                    <div class="filter-group">
-                        <label>Fecha hasta:</label>
-                        <input type="date" id="fechaHasta">
-                    </div>
+                    <div class="filter-group"><label>Fecha desde:</label><input type="date" id="fechaDesde"></div>
+                    <div class="filter-group"><label>Fecha hasta:</label><input type="date" id="fechaHasta"></div>
                     <div class="filter-group">
                         <label>Unidad de Negocio:</label>
-                        <select id="unidadNegocio">
-                            <option value="">Seleccione...</option>
+                        <select id="unidadNegocioFiltro">
+                            <option value="">Todas...</option>
                             <option value="Principal">Principal</option>
+                            <option value="Sucursal">Sucursal</option>
                         </select>
-                    </div>
-                    <div class="filter-group">
-                        <label>Subcategoría:</label>
-                        <select id="subcategoria"><option value="">Seleccione...</option></select>
                     </div>
                 </div>
             </section>
@@ -61,29 +39,50 @@
                     <div class="action-box">
                         <h3>NUEVO REGISTRO DE</h3>
                         <div class="action-buttons">
-                            <button type="button" onclick="abrirModalGasto()">[Registro de Gastos]</button>
-                            <button type="button">[Proveedores]</button>
-                            <button type="button">[Nómina]</button>
-                            <button type="button">[Créditos y Finanzas]</button>
-                            <button type="button">[Inventario Dañado]</button>
+                            <button type="button" onclick="abrirModalGasto('Registro de Gastos')">[Registro de Gastos]</button>
+                            <button type="button" onclick="abrirModalGasto('Proveedores')">[Proveedores]</button>
+                            <button type="button" onclick="abrirModalGasto('Nómina')">[Nómina]</button>
+                            <button type="button" onclick="abrirModalGasto('Créditos y Finanzas')">[Créditos y Finanzas]</button>
+                            <button type="button" onclick="abrirModalGasto('Inventario Dañado')">[Inventario Dañado]</button>
                         </div>
-                    </div>
-                    <div class="kpi-box">
-                        <button type="button" class="btn-kpi">[Indicadores KPIs]</button>
                     </div>
                 </aside>
 
-                <section class="kpi-single-section">
-                    <div class="kpi-card highlight-card">
-                        <h4>SALDO DISPONIBLE</h4>
-                        <p class="amount-large" id="saldoDisponibleTexto"
-                           th:text="${#numbers.formatCurrency(saldo)}">$0.00</p>
-                        <i class="fa-solid fa-money-bill-trend-up card-icon"></i>
-                    </div>
-                </section>
+                <div class="highlight-card" style="background-color: #e8f4fd; border-left: 5px solid #2b5c8f; border-radius: 5px; height: fit-content;">
+                    <h4 style="font-weight: bold; color: #555;">SALDO TOTAL DISPONIBLE</h4>
+                    <h2 id="saldoDisponibleTexto" class="amount-large" style="color: #2b5c8f; font-size: 2.5rem;">$ 0</h2>
+                    <i class="fa-solid fa-wallet card-icon" style="color: rgba(43, 92, 143, 0.2);"></i>
+                </div>
             </div>
         </div>
     </main>
+</div>
+
+<div id="modalNuevoGasto" class="modal-gasto-oculto">
+    <div class="modal-gasto-contenido">
+        <span class="cerrar-modal" onclick="cerrarModalGasto()">&times;</span>
+        <h2 id="tituloModalGasto">Nuevo Registro</h2>
+        <form id="formNuevoGasto">
+            <input type="hidden" id="subcategoriaGasto" value="General">
+
+            <div class="form-group">
+                <label>Descripción</label>
+                <input type="text" id="descGasto" placeholder="Ej. Pago recibo luz" required>
+            </div>
+            <div class="form-group">
+                <label>Monto</label>
+                <input type="number" id="montoGasto" placeholder="0.00" required step="0.01">
+            </div>
+            <div class="form-group">
+                <label>Unidad de Negocio</label>
+                <select id="unidadGasto">
+                    <option value="Principal">Principal</option>
+                    <option value="Sucursal">Sucursal</option>
+                </select>
+            </div>
+            <button type="button" class="btn-guardar-gasto" onclick="enviarFormularioGasto()">Guardar Gasto</button>
+        </form>
+    </div>
 </div>
 <script th:src="@{/js/gestionGastos.js}"></script>
 </body>

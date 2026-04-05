@@ -1,0 +1,202 @@
+/* =========================================
+   ESTILOS INGRESOS DE CAPITAL
+   ========================================= */
+.contenido-capital {
+    flex: 1;
+    background-color: #84ccea; /* Fondo celeste del mockup */
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.titulo-vista {
+    color: white;
+    font-size: 1.8rem;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.tarjeta-blanca {
+    background-color: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* --- Formulario --- */
+.grid-formulario {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.grupo-input label {
+    font-size: 0.8rem;
+    color: #333;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.grupo-input select,
+.grupo-input input {
+    background-color: #3a75b6; /* Azul de los inputs */
+    color: white;
+    border: 1px solid #2a5a8f;
+    padding: 10px;
+    font-size: 1rem;
+    outline: none;
+    border-radius: 3px;
+}
+
+/* Para el input de valor que lleva el signo $ */
+.input-con-icono {
+    display: flex;
+    background-color: #3a75b6;
+    border: 1px solid #2a5a8f;
+    border-radius: 3px;
+    padding: 0 10px;
+    align-items: center;
+}
+
+.input-con-icono span { color: white; font-weight: bold; margin-right: 5px;}
+.input-con-icono input { border: none; flex: 1; padding: 10px 0; }
+
+/* Inhabilitar aspecto */
+.grupo-input select:disabled { background-color: #a0bedc; cursor: not-allowed; }
+
+/* --- Botones --- */
+.contenedor-botones {
+    display: flex;
+    gap: 20px;
+    padding-left: 20px;
+}
+
+.btn {
+    padding: 10px 30px;
+    border: 1px solid #333;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-ingresar { background-color: #c9e8f5; }
+.btn-limpiar { background-color: #72a6d8; }
+.btn-anular { background-color: #3a75b6; color: white; }
+
+/* --- Histórico --- */
+.historico-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    min-height: 200px;
+}
+
+.seccion-tabla { flex: 3; padding-right: 30px; border-right: 2px solid #eee; }
+.seccion-tabla label { font-size: 0.8rem; text-transform: uppercase; color: #666; }
+
+.tabla-historico { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.tabla-historico th, .tabla-historico td { border: 1px solid #84ccea; padding: 8px; text-align: left; }
+.tabla-historico th { background-color: #e4f4fb; }
+.tabla-historico td { background-color: #f2fbff; }
+
+.seccion-total { flex: 1; padding-left: 30px; display: flex; flex-direction: column; justify-content: center; }
+.seccion-total label { font-weight: bold; color: #333; }
+.seccion-total h2 { font-size: 2.5rem; margin: 10px 0 0 0; color: #000; }
+/* =========================================
+   MODAL DE INVENTARIO / BODEGA
+   ========================================= */
+.modal-oculto {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-contenido {
+    background-color: #2b5c8f;
+    padding: 30px 40px;
+    border-radius: 5px;
+    width: 400px;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.5);
+    position: relative;
+    color: white;
+}
+
+.cerrar-modal {
+    position: absolute; top: 10px; right: 15px;
+    font-size: 28px; cursor: pointer; color: white; font-weight: bold;
+}
+
+.cerrar-modal:hover { color: #ff4c4c; }
+
+.modal-contenido label {
+    font-family: "Arial", sans-serif;
+    font-size: 14px;
+}
+
+.modal-contenido input {
+    background-color: #dbeaf5 !important;
+    color: #333 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 3px;
+    outline: none;
+}
+@media screen and (max-width: 768px) {
+    .contenido-capital {
+        padding: 15px 20px;
+    }
+
+    .grid-formulario {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .contenedor-botones {
+        flex-direction: column;
+        padding-left: 0;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-left: 0 !important;
+    }
+
+    .historico-container {
+        flex-direction: column;
+    }
+
+    .seccion-tabla {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .seccion-total {
+        padding-left: 0;
+        align-items: center;
+    }
+
+    .modal-contenido {
+        width: 90%;
+        padding: 20px;
+    }
+}

@@ -1,136 +1,114 @@
 :root {
-    --color-primario: #3674B5; /* barra azul */
-    --color-secundario: #A1E3F9;
-    --color-terciario: #FFFFFF;
-    --color-text-dark: #333333;
-    --color-text-light: #ffffff;
+    --bg-celeste: #A1E3F9; /* Fondo del mockup */
+    --azul-primario: #3674B5;
+    --blanco-transparente: rgba(255, 255, 255, 0.7);
 }
 
-/* =========================
-   CONTENIDO PRINCIPAL
-========================= */
-.contenido-ventas {
+.contenido {
+    background-color: var(--bg-celeste);
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 20px;
 }
 
-/* =========================
-   CARDS RESUMEN DE VENTAS
-========================= */
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+.seccion-seleccion {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
 }
 
-.card {
-    background: var(--color-terciario);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+.instruccion {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 300;
 }
 
-.card h4 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: #555;
-}
-
-.card .total {
-    font-size: 26px;
-    font-weight: bold;
-}
-
-/* Colores por tipo */
-.ventas-totales .total {
-    color: #2e7d32; /* verde */
-}
-
-.ventas-mensuales .total {
-    color: #1565c0; /* azul */
-}
-
-.profit .total {
-    color: #c62828; /* rojo */
-}
-
-/* =========================
-   TABLA DE VENTAS
-========================= */
-table {
+.form-busqueda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+    max-width: 500px;
 }
 
-thead {
-    background: #f2f2f2;
+/* Cajas redondeadas del mockup */
+.input-contenedor {
+    background-color: var(--blanco-transparente);
+    width: 100%;
+    padding: 20px 40px;
+    border-radius: 40px; /* Bordes muy redondeados */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-th, td {
-    padding: 10px;
-    text-align: left;
-    font-size: 14px;
+.input-contenedor label {
+    font-size: 1.1rem;
+    color: #333;
 }
 
-th {
-    font-weight: bold;
-    color: #444;
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-tbody tr {
-    border-bottom: 1px solid #ddd;
-}
-
-tbody tr:hover {
-    background-color: #f9f9f9;
-}
-
-/* =========================
-   BOTONES
-========================= */
-.btn {
-    padding: 8px 15px;
+.input-wrapper input {
     border: none;
-    border-radius: 4px;
+    background: transparent;
+    font-size: 1.1rem;
+    color: #666;
+    outline: none;
+    text-transform: uppercase;
+}
+
+.icono-cal {
+    width: 30px;
+    height: 30px;
+}
+
+/* Botón Buscar */
+.btn-buscar {
+    background-color: var(--azul-primario);
+    color: white;
+    border: none;
+    padding: 12px 60px;
+    border-radius: 10px;
+    font-size: 1rem;
     cursor: pointer;
-    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background 0.3s;
 }
 
-.btn-nueva {
-    background-color: var(--color-primario); /* azul */
-    color: var(--color-text-light);
+.btn-buscar:hover {
+    background-color: #2a5a8a;
 }
-
-.btn-editar {
-    background-color: #FFA500; /* naranja */
-    color: var(--color-text-light);
-}
-
-.btn-eliminar {
-    background-color: #c62828; /* rojo */
-    color: var(--color-text-light);
-}
-
-.btn:hover {
-    opacity: 0.9;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-    .cards {
-        grid-template-columns: 1fr;
+@media screen and (max-width: 768px) {
+    .seccion-seleccion {
+        padding: 20px;
     }
 
-    .total {
-        font-size: 22px;
+    .form-busqueda {
+        width: 100%;
     }
 
-    table th, table td {
-        font-size: 12px;
+    .input-contenedor {
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 20px;
+        padding: 15px 25px;
+        gap: 10px;
+    }
+
+    .input-wrapper input {
+        width: 100%;
+    }
+
+    .btn-buscar {
+        width: 100%;
     }
 }

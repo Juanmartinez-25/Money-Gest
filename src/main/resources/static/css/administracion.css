@@ -119,3 +119,25 @@
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+@media screen and (max-width: 768px) {
+    .contenido-admin {
+        padding: 10px;
+    }
+
+    .form-crear {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .btn-crear {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .tabla-usuarios {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}

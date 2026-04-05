@@ -27,7 +27,6 @@ public class Gasto {
     @Column(name = "id_usuario")
     private Integer idUsuario;
 
-    // Getters y Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
     public LocalDateTime getFecha() { return fecha; }

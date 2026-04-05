@@ -103,9 +103,6 @@
     cursor: pointer;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
 @media (max-width: 768px) {
     .cards-resumen {
         grid-template-columns: 1fr;

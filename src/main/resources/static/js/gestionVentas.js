@@ -1,6 +1,6 @@
 let carrito = [];
 
-// Simulación de productos para la demo visual (En producción usarías una API)
+
 const productosPrecios = {
     '8085215': 150000,
     '808315': 200000,
